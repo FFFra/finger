@@ -13,17 +13,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var robotLabel: UILabel!
     @IBOutlet weak var numberField: UITextField!
     
+    @IBOutlet weak var humanScore: UILabel!
+    @IBOutlet weak var machineScore: UILabel!
     @IBOutlet weak var result: UILabel!
+    var humanCounter = 0
+    var machineCounter = 0
+
     
     @IBAction func playButton(sender: AnyObject) {
         let randomNumber = String(arc4random_uniform(6))
         
         
         if randomNumber == numberField.text{
+            humanCounter = humanCounter+1
+            humanScore.text = String(humanCounter)
             result.text = "Você está certo!"
             
+            
         }else{
+            machineCounter = machineCounter + 1
+            machineScore.text = String(machineCounter)
             result.text = "Errado! Eu tenho " + randomNumber + " dedos"
+            
         }
         
         
@@ -37,12 +48,14 @@ class ViewController: UIViewController {
             
         }
         
+        numberField.text = ""
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        humanScore.text = String(humanCounter)
+        machineScore.text = String(machineCounter)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,5 +64,7 @@ class ViewController: UIViewController {
     }
 
   
+    
+    
 }
 
